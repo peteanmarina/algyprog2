@@ -1,3 +1,6 @@
 go 1.18
 
-use ./modulo1
+use (
+	./modulo1
+	./tp0
+)
