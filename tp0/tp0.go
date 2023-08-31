@@ -1,10 +1,8 @@
 package tp0
 
 // Swap intercambia dos valores enteros.
-func Swap(x *int, y *int) {
-	aux := *x
-	*x = *y
-	*y = aux
+func Swap(x *int, y *int) {  
+	*x, *y = *y, *x //intercambio valores
 }
 
 // Maximo devuelve la posición del mayor elemento del arreglo, o -1 si el el arreglo es de largo 0. Si el máximo
@@ -33,34 +31,31 @@ func Maximo(vector []int) int {
 func Comparar(vector1 []int, vector2 []int) int {
 	largo1 := len(vector1)
 	largo2 := len(vector2)
-
-	if largo1 == 0 && largo2 == 0 {
+	if largo1 == 0 && largo2 == 0 { //ambos tienen largo 0
 		return 0
-	} else if largo1 == 0 {
+	} else if largo1 == 0 { //solamente el primero tiene largo 0
 		return -1
-	} else if largo2 == 0 {
+	} else if largo2 == 0 { //solamente el segundo tiene largo 0
 		return 1
-	} else {
+	} else { //si ninguno tiene largo 0, comparo primer valor
 		if vector1[0] < vector2[0] {
 			return -1
 		} else if vector2[0] < vector1[0] {
 			return 1
 		}
 	}
-	return Comparar(vector1[1:largo1], vector2[1:largo2])
+	return Comparar(vector1[1:largo1], vector2[1:largo2]) // pasa cuando en la primera posicion son iguales
 }
 
 // Seleccion ordena el arreglo recibido mediante el algoritmo de selección.
 func Seleccion(vector []int) {
 	largo := len(vector)
 	for i := 0; i < largo-1; i++ {
-		posicionMenor := i
 		for j := i + 1; j < largo; j++ {
-			if vector[j] < vector[posicionMenor] {
-				posicionMenor = j
+			if vector[j] < vector[i] {
+				vector[i], vector[j] = vector[j], vector[i] //intercambio valores
 			}
 		}
-		vector[i], vector[posicionMenor] = vector[posicionMenor], vector[i]
 	}
 }
 
@@ -83,8 +78,8 @@ func EsCadenaCapicua(cadena string) bool {
 	if largo < 2 {
 		return true
 	}
-	if cadena[0] != cadena[largo-1] {
+	if cadena[0] != cadena[largo-1] { //comparo los valores de los extremos
 		return false
 	}
-	return EsCadenaCapicua(cadena[1 : largo-1])
+	return EsCadenaCapicua(cadena[1 : largo-1]) //le paso un vector sin los extremos
 }
