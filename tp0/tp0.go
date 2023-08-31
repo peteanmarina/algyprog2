@@ -30,24 +30,22 @@ func Maximo(vector []int) int {
 // Devuelve -1 si el primer arreglo es menor que el segundo; 0 si son iguales; o 1 si el primero es el mayor.
 // Un arreglo es menor a otro cuando al compararlos elemento a elemento, el primer elemento en el que difieren
 // no existe o es menor.
-
 func Comparar(vector1 []int, vector2 []int) int {
 	largo1 := len(vector1)
 	largo2 := len(vector2)
+
 	if largo1 == 0 && largo2 == 0 {
 		return 0
-	}
-	if largo1 == 0 {
+	} else if largo1 == 0 {
 		return -1
-	}
-	if largo2 == 0 {
+	} else if largo2 == 0 {
 		return 1
-	}
-	if vector1[0] < vector2[0] {
-		return -1
-	}
-	if vector2[0] < vector1[0] {
-		return 1
+	} else {
+		if vector1[0] < vector2[0] {
+			return -1
+		} else if vector2[0] < vector1[0] {
+			return 1
+		}
 	}
 	return Comparar(vector1[1:largo1], vector2[1:largo2])
 }
@@ -80,10 +78,9 @@ func Suma(vector []int) int {
 // EsCadenaCapicua devuelve si la cadena es un palíndromo. Es decir, si se lee igual al derecho que al revés.
 // Esta función debe implementarse de forma RECURSIVA. Se puede usar una función auxiliar (que sea
 // la recursiva).
-
 func EsCadenaCapicua(cadena string) bool {
 	largo := len(cadena)
-	if largo <= 1 {
+	if largo < 2 {
 		return true
 	}
 	if cadena[0] != cadena[largo-1] {
