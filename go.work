@@ -1,6 +1,9 @@
-go 1.18
+go 1.20
+
+toolchain go1.21.0
 
 use (
+	./admmemoria
 	./modulo1
 	./tp0
 )

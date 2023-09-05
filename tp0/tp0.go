@@ -1,7 +1,7 @@
 package tp0
 
 // Swap intercambia dos valores enteros.
-func Swap(x *int, y *int) {  
+func Swap(x *int, y *int) {
 	*x, *y = *y, *x //intercambio valores
 }
 
@@ -15,7 +15,7 @@ func Maximo(vector []int) int {
 	} else {
 		for i := 0; i < largo; i++ {
 			for j := 1; j < largo; j++ {
-				if vector[j] > vector[posicionMayor] {
+				if vector[j] > vector[posicionMayor] { //como uso > y no >= siempre devuelve la primera posicion
 					posicionMayor = j
 				}
 			}
@@ -44,17 +44,16 @@ func Comparar(vector1 []int, vector2 []int) int {
 			return 1
 		}
 	}
-	return Comparar(vector1[1:largo1], vector2[1:largo2]) // pasa cuando en la primera posicion son iguales
+	return Comparar(vector1[1:largo1], vector2[1:largo2]) // le paso los vectores sin el primer elemento
 }
 
 // Seleccion ordena el arreglo recibido mediante el algoritmo de selección.
 func Seleccion(vector []int) {
 	largo := len(vector)
-	for i := 0; i < largo-1; i++ {
-		for j := i + 1; j < largo; j++ {
-			if vector[j] < vector[i] {
-				vector[i], vector[j] = vector[j], vector[i] //intercambio valores
-			}
+	for i := largo - 1; i > 0; i-- { //voy disminuyendo el valor de i, mi vector lo paso en cada iteracion con una posicion menos al final
+		posicionMayor := Maximo(vector[:i+1]) //calculo el mayor, de entre los elementos que aun no fueron ordenados
+		if posicionMayor != i {               //i siempre es "la ultima posicion del vector sin estar ordenada"
+			Swap(&vector[i], &vector[posicionMayor])
 		}
 	}
 }
